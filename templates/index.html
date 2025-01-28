@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask a Question</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Ask a Question</h1>
+        <input type="text" id="question" placeholder="Type your question here..." />
+        <button onclick="askQuestion()">Submit</button>
+        <div id="response"></div>
+    </div>
+
+    <script>
+        async function askQuestion() {
+            const question = document.getElementById("question").value;
+            const responseElement = document.getElementById("response");
+            responseElement.innerText = "Loading...";
+
+            try {
+                const response = await fetch("/query", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ question: question }),
+                });
+                const data = await response.json();
+                responseElement.innerText = data.response || data.error;
+            } catch (error) {
+                responseElement.innerText = "An error occurred. Please try again.";
+                console.error("Error:", error);
+            }
+        }
+    </script>
+</body>
+</html>

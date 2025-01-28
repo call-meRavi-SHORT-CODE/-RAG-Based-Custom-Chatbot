@@ -1,0 +1,9 @@
+langchain
+langchain-community
+langchain-core
+chromadb
+tiktoken
+langchain-ollama
+beautifulsoup4
+flask
+flask-cors
