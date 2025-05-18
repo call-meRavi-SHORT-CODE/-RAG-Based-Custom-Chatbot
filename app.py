@@ -40,7 +40,7 @@ after_rag_chain = (
     | StrOutputParser()
 )
 
-# Serve the frontend
+
 @app.route("/")
 def home():
     return render_template("index.html")
