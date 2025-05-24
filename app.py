@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, render_template
-# from flask_restful import Api, Resource
+
 from flask_cors import CORS
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_community.vectorstores import Chroma
